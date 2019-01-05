@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: eureka-service
+    
+server:
+  port: 8761
+  
+  
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+  server:
+    wait-time-in-ms-when-sync-empty: 0
+    
+zuul:
+  prefix: /api
+  routes:
+    db-service:
+      path: /db-service/**
+      url: http://localhost:8001
+      strip-prefix: true
+    stock-service:
+      path: /stock-service/**
+      url: http://localhost:8002
+      strip-prefix: true

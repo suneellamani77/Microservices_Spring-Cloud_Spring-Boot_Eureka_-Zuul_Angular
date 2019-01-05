@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<link rel="stylesheet" href="../css/bootstrap.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="../js/jquery3.js"></script>
+<script src="../js/bootstrap.js"></script>
+<script src="../js/app.js"></script>
+<body>
+
+  <div class="container">
+  <div class="jumbotron">
+    <h1>Micro Service using Spring Boot</h1>
+  </div>
+
+  <div ng-app="myApp" ng-controller="myCtrl as ctrl">
+      <div class="container mt-3">
+
+        <div class="input-group mb-3">
+    <div class="input-group-prepend input-group-sm">
+      <span class="input-group-text ">@</span>
+    </div>
+    <input type="text" class="form-control col-md-3" placeholder="Username" id="usr" ng-model="name">
+  </div>
+
+  <div class="input-group mb-3">
+    <input type="text" class="form-control col-md-3" placeholder="Quotes" id="mail" ng-model="quote">
+    <div class="input-group-append input-group-sm">
+      <span class="input-group-text">*</span>
+    </div>
+  </div>
+  <button ng-click="ctrl.add();" type="button" name="button" class="btn btn-primary">Add</button>
+  <span>&#160;</span>
+  <button ng-click="ctrl.retrieve();" type="button" name="button" class="btn btn-success">Retrieve Price</button>
+
+      </div>
+    <!-- <p>Username : <input type="text" ng-model="name"></p>
+     <p>Quote : <input type="text" ng-model="quote"></p>
+
+    <button ng-click="ctrl.add();" name="button"  type="button">Add</button>
+    <button ng-click="ctrl.retrieve();" name="button" type="button">Retrieve Price</button> -->
+
+<br>
+
+    <div class="row table-responsive">
+
+      <table class="table table-bordered table-striped">
+      <tr>
+      <th>Quote</th>
+      <th>Price</th>
+      </tr>
+      <tr ng-repeat="q in quotes">
+      	<td>{{q.quote}}</td>
+      	<td>{{q.price}}</td>
+       	</tr>
+      </table>
+
+    </div>
+
+
+
+  </div>
+
+</div>
+
+
+
+</body>
+</html>

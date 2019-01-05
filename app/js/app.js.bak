@@ -1,0 +1,39 @@
+var app = angular.module('myApp', []);
+app.config(['$httpProvider', function($httpProvider) {
+    $httpProvider.defaults.timeout = 20000;
+}])
+
+var config = {headers:  {
+        'Authorization': 'Basic d2VudHdvcnRobWFuOkNoYW5nZV9tZQ==',
+        'Accept': 'application/json;odata=verbose',
+        "X-Testing" : "testing"
+    }
+};
+
+app.controller('myCtrl', function($scope, $http) {
+    this.retrieve = function() {
+    $http.get('http://127.0.0.1:8761/api/stock-service/rest/stack/' + $scope.name )
+    .then(function (response) {
+        console.log('inside'+ response);
+        $scope.quotes = response.data;
+    }, function (response) {
+		 response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        console.log('came here');
+    });
+    }
+
+
+    this.add = function() {
+        var message = {
+            userName: $scope.name,
+            quotes: [$scope.quote]
+        }
+        $http.post('http://127.0.0.1:8761/api/db-service/rest/db/addUser', message)
+            .then(function(response) {
+                $scope.quotes = response.data;
+            }, function(response) {
+                console.log('error..');
+            });
+    }
+});
